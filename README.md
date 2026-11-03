@@ -159,3 +159,25 @@ As decisões arquiteturais estão disponíveis em `docs/adr/`.
 ## Finalidade
 
 Projeto desenvolvido exclusivamente para fins acadêmicos e experimentais, com utilização de imagens autorizadas.
+## Limiar de reconhecimento facial
+
+O aplicativo utiliza similaridade de cosseno para comparar os
+embeddings faciais gerados pelo FaceNet.
+
+Na Parte 1, os experimentos com o conjunto LFW selecionaram
+o limiar 0,40 nos dez folds, com acurácia média de 98,43%.
+
+Como o aplicativo realiza identificação entre pessoas cadastradas,
+foi adotado provisoriamente o limiar 0,60 após testes exploratórios.
+
+Nos testes realizados, uma fotografia da pessoa cadastrada
+apresentou similaridade de 0,6369 e foi rejeitada com limiar 0,80.
+Ao utilizar 0,60, a mesma fotografia foi reconhecida corretamente.
+
+Também foi observado um caso de pessoa não cadastrada com
+similaridade aproximada de 0,05, rejeitado com limiar 0,80.
+
+Esses resultados são preliminares e não constituem uma
+validação estatística completa do limiar 0,60. Uma avaliação
+com mais participantes seria necessária para determinar
+seu desempenho em diferentes condições.
