@@ -181,7 +181,11 @@ elif pagina == "Cadastrar pessoa":
 
         elif foto_escolhida is None:
              st.error("Envie uma fotografia ou tire uma foto com a câmera.")
-
+        elif any(
+            nome_existente.strip().casefold() == nome.strip().casefold()
+            for _, nome_existente, _ in listar_pessoas()
+        ):
+            st.error("Esta pessoa já está cadastrada.")
         else:
             with st.spinner("Processando o rosto com FaceNet..."):
                 embedding, erro = extrair_embedding(
